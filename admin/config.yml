@@ -1,6 +1,6 @@
 backend:
   name: github
-  repo: elianbryan17/site-congregacao  # substitua aqui
+  repo: elianbryan17/site-congregacao
   branch: main
 
 media_folder: "static/uploads"
@@ -17,14 +17,6 @@ collections:
         fields:
           - { label: "Título", name: "title", widget: "string" }
           - { label: "Conteúdo", name: "body", widget: "markdown" }
-
-  - name: "galeria"
-    label: "Galeria de Fotos"
-    folder: "static/uploads/galeria"
-    create: true
-    fields:
-      - { label: "Título da Foto", name: "title", widget: "string" }
-      - { label: "Imagem", name: "image", widget: "image" }
 
   - name: "agenda"
     label: "Agenda de Cultos"
@@ -44,6 +36,7 @@ collections:
         name: "contato"
         fields:
           - { label: "Texto", name: "body", widget: "markdown" }
+
   - name: "galeria"
     label: "Galeria de Fotos"
     folder: "content/galeria"
