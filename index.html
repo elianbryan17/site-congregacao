@@ -1,53 +1,99 @@
-<!-- index.html -->
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Congregação Assembleia de Deus</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+
   <header>
     <h1>Congregação Assembleia de Deus</h1>
-    <p>Setor XX – IEAD Templo Central de Porto Velho</p>
     <nav>
       <a href="#sobre">Sobre</a>
       <a href="#agenda">Agenda</a>
-      <a href="#galeria">Galeria</a>
       <a href="#contato">Contato</a>
     </nav>
   </header>
 
   <main>
     <section id="sobre">
-      <h2>Sobre Nós</h2>
-      <p>Somos uma congregação ativa da Assembleia de Deus em Porto Velho, comprometida com o evangelho e o serviço à comunidade. Seja bem-vindo!</p>
+      <h2 id="home-title">Carregando...</h2>
+      <div id="home-content">Aguarde o conteúdo ser carregado.</div>
     </section>
 
     <section id="agenda">
       <h2>Agenda de Cultos</h2>
-      <ul>
-        <li>Domingo – Culto da Família – 19h</li>
-        <li>Terça – Culto de Ensino – 19h30</li>
-        <li>Quinta – Culto de Oração – 19h30</li>
-      </ul>
-    </section>
-
-    <section id="galeria">
-      <h2>Galeria de Fotos</h2>
-      <p>Em breve você verá aqui as fotos dos nossos cultos e eventos especiais.</p>
+      <ul id="lista-cultos">Carregando cultos...</ul>
     </section>
 
     <section id="contato">
       <h2>Localização e Contato</h2>
-      <p>Rua Exemplo, Bairro Tal, Porto Velho – RO</p>
-      <p>Email: adcongregacao@email.com</p>
+      <div id="contato-content">Carregando...</div>
     </section>
   </main>
 
   <footer>
-    <p>&copy; 2025 Congregação Assembleia de Deus – Porto Velho</p>
+    <p>&copy; Congregação Assembleia de Deus – Porto Velho</p>
   </footer>
+
+  <!-- Biblioteca para converter Markdown -->
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <!-- Scripts para carregar o conteúdo dinâmico -->
+  <script>
+    async function carregarHome() {
+      try {
+        const resposta = await fetch('/content/home.md');
+        const texto = await resposta.text();
+        const [meta, ...body] = texto.split('---').filter(Boolean);
+        const linhas = meta.trim().split('\n');
+        const titulo = linhas.find(l => l.startsWith('title:'))?.replace('title:', '').trim();
+        document.getElementById('home-title').textContent = titulo;
+        document.getElementById('home-content').innerHTML = marked.parse(body.join('---'));
+      } catch (err) {
+        console.error("Erro ao carregar conteúdo da home:", err);
+      }
+    }
+
+    async function carregarAgenda() {
+      try {
+        const res = await fetch('/content/agenda.yml');
+        const texto = await res.text();
+        const cultos = texto
+          .split('\n')
+          .filter(l => l.includes('- description:'))
+          .map(l => l.replace('- description:', '').trim());
+
+        const ul = document.getElementById('lista-cultos');
+        ul.innerHTML = '';
+        cultos.forEach(desc => {
+          const li = document.createElement('li');
+          li.textContent = desc;
+          ul.appendChild(li);
+        });
+      } catch (err) {
+        console.error("Erro ao carregar agenda:", err);
+      }
+    }
+
+    async function carregarContato() {
+      try {
+        const res = await fetch('/content/contato.md');
+        const texto = await res.text();
+        const body = texto.split('---')[2];
+        document.getElementById('contato-content').innerHTML = marked.parse(body);
+      } catch (err) {
+        console.error("Erro ao carregar contato:", err);
+      }
+    }
+
+    // Carregar tudo ao iniciar
+    carregarHome();
+    carregarAgenda();
+    carregarContato();
+  </script>
+
 </body>
 </html>
