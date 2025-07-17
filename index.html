@@ -22,6 +22,10 @@
       <h2 id="home-title">Carregando...</h2>
       <div id="home-content">Aguarde o conteúdo ser carregado.</div>
     </section>
+<section id="galeria">
+  <h2>Galeria de Fotos</h2>
+  <div id="galeria-fotos" class="grid-galeria">Carregando...</div>
+</section>
 
     <section id="agenda">
       <h2>Agenda de Cultos</h2>
@@ -88,8 +92,41 @@
         console.error("Erro ao carregar contato:", err);
       }
     }
+async function carregarGaleria() {
+  try {
+    const res = await fetch('/content/galeria');
+    const html = await res.text();
+
+    // Captura os nomes dos arquivos .md na pasta
+    const matches = [...html.matchAll(/href="([^"]+\.md)"/g)];
+    const arquivos = matches.map(m => m[1]);
+
+    const container = document.getElementById('galeria-fotos');
+    container.innerHTML = '';
+
+    for (const arq of arquivos) {
+      const resp = await fetch(`/content/galeria/${arq}`);
+      const txt = await resp.text();
+      const meta = txt.split('---')[1];
+      const imgLine = meta.split('\n').find(l => l.trim().startsWith('imagem:'));
+      const url = imgLine?.split('imagem:')[1].trim();
+
+      if (url) {
+        const img = document.createElement('img');
+        img.src = url;
+        img.alt = "Foto da Galeria";
+        container.appendChild(img);
+      }
+    }
+  } catch (err) {
+    console.error("Erro ao carregar galeria:", err);
+  }
+}
+
+
 
     // Carregar tudo ao iniciar
+    carregarGaleria();
     carregarHome();
     carregarAgenda();
     carregarContato();

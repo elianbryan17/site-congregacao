@@ -7,6 +7,7 @@ media_folder: "static/uploads"
 public_folder: "/uploads"
 
 collections:
+
   - name: "pages"
     label: "Páginas"
     files:
@@ -43,3 +44,12 @@ collections:
         name: "contato"
         fields:
           - { label: "Texto", name: "body", widget: "markdown" }
+  - name: "galeria"
+    label: "Galeria de Fotos"
+    folder: "content/galeria"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - { label: "Título", name: "title", widget: "string" }
+      - { label: "Imagem", name: "imagem", widget: "image" }
+      - { label: "Data", name: "date", widget: "datetime" }

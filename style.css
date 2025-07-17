@@ -36,3 +36,14 @@ footer {
   text-align: center;
   padding: 1rem;
 }
+.grid-galeria {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1rem;
+  padding: 1rem 0;
+}
+.grid-galeria img {
+  width: 100%;
+  border-radius: 8px;
+  box-shadow: 0 0 6px #ccc;
+}
