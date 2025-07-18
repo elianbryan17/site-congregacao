@@ -2,7 +2,6 @@ backend:
   name: github
   repo: elianbryan17/site-congregacao
   branch: main
-  auth_scope: repo
 
 media_folder: "static/uploads"
 public_folder: "/uploads"
@@ -18,16 +17,6 @@ collections:
           - { label: "Título", name: "title", widget: "string" }
           - { label: "Conteúdo", name: "body", widget: "markdown" }
 
-  - name: "agenda"
-    label: "Agenda de Cultos"
-    files:
-      - file: "content/agenda.yml"
-        label: "Lista de Cultos"
-        name: "agenda"
-        fields:
-          - { label: "Cultos", name: "services", widget: "list", field:
-              { label: "Descrição", name: "description", widget: "string" } }
-
   - name: "contato"
     label: "Contato"
     files:
@@ -36,6 +25,19 @@ collections:
         name: "contato"
         fields:
           - { label: "Texto", name: "body", widget: "markdown" }
+
+  - name: "agenda"
+    label: "Agenda de Cultos"
+    files:
+      - file: "content/agenda.yml"
+        label: "Lista de Cultos"
+        name: "agenda"
+        fields:
+          - label: "Cultos"
+            name: "services"
+            widget: "list"
+            field:
+              { label: "Descrição", name: "description", widget: "string" }
 
   - name: "galeria"
     label: "Galeria de Fotos"
