@@ -27,10 +27,10 @@ collections:
           - label: "Cultos"
             name: "services"
             widget: "list"
-            field:
-              label: "Descrição"
-              name: "description"
-              widget: "string"
+            fields:
+              - label: "Descrição"
+                name: "description"
+                widget: "string"
 
   - name: "contato"
     label: "Contato"
