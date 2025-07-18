@@ -1,13 +1,8 @@
-local_backend: false
-
-oauth_provider:
-  name: auth0
-  client_id: aTUtHaudG3IBtMCfX0jaRe48X06IqJh0
-  client_secret: oKuBSO0oi0EYaGkB6YPr7Xfvss7unzkqG5UJPh4fPA8A12YkFzgZljJFci3Uj7yO
-
 backend:
   name: git-gateway
   branch: main
+
+local_backend: false
 
 media_folder: "static/uploads"
 public_folder: "/uploads"
