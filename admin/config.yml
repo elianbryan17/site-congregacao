@@ -17,15 +17,6 @@ collections:
           - { label: "Título", name: "title", widget: "string" }
           - { label: "Conteúdo", name: "body", widget: "markdown" }
 
-  - name: "contato"
-    label: "Contato"
-    files:
-      - file: "content/contato.md"
-        label: "Informações de Contato"
-        name: "contato"
-        fields:
-          - { label: "Texto", name: "body", widget: "markdown" }
-
   - name: "agenda"
     label: "Agenda de Cultos"
     files:
@@ -37,7 +28,18 @@ collections:
             name: "services"
             widget: "list"
             field:
-              { label: "Descrição", name: "description", widget: "string" }
+              label: "Descrição"
+              name: "description"
+              widget: "string"
+
+  - name: "contato"
+    label: "Contato"
+    files:
+      - file: "content/contato.md"
+        label: "Informações de Contato"
+        name: "contato"
+        fields:
+          - { label: "Texto", name: "body", widget: "markdown" }
 
   - name: "galeria"
     label: "Galeria de Fotos"
