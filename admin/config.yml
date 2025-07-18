@@ -1,3 +1,10 @@
+local_backend: false
+
+oauth_provider:
+  name: github
+  client_id: Ov23lipFCSPEBHDlL3xa
+  client_secret: d780c970eede3c02022de26bdbfaf6af1ab64afe
+  
 backend:
   name: github
   repo: elianbryan17/site-congregacao
