@@ -1,12 +1,12 @@
 local_backend: false
 
 oauth_provider:
-  name: github
-  client_id: Ov23lipFCSPEBHDlL3xa
-  client_secret: d780c970eede3c02022de26bdbfaf6af1ab64afe
+  name: auth0
+  client_id: aTUtHaudG3IBtMCfX0jaRe48X06IqJh0
+  client_secret: oKuBSO0oi0EYaGkB6YPr7Xfvss7unzkqG5UJPh4fPA8A12YkFzgZljJFci3Uj7yO
 
 backend:
-  name: github
+  name: git-gateway
   repo: elianbryan17/site-congregacao
   branch: main
 
