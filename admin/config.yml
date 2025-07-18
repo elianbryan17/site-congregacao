@@ -7,7 +7,6 @@ oauth_provider:
 
 backend:
   name: git-gateway
-  repo: elianbryan17/site-congregacao
   branch: main
 
 media_folder: "static/uploads"
